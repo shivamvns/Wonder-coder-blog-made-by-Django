@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% block blogactive %}active{% endblock blogactive %}
+{% block css %}
+
+    <style>
+        .container{
+        min-height: 150vh;
+    }
+    </style>
+
+
+{% endblock css %}
+{% block body%}
+<div class="container">
+<h1 class="my-3">Welcome to Wonder-Coder Blog</h1>
+{% for blog in blogs %}
+
+
+    <div class="my-4">
+
+
+    <h3 class="mt-0"> <a href="/blogpost/{{blog.slug}}" class="text-dark"> {{blog.title}}</a></h3>
+      <div class="">
+    {{blog.short_desc|slice:245}}...
+  </div>
+        <a href="/blogpost/{{blog.slug}}" class="text-dark"> <button type="button" class="btn btn-outline-primary btn-sm">Read More...</button></a>
+</div>
+
+
+
+{% endfor %}
+    <div class=" my-3">
+        {% if prev %}
+        <button type="button" class="btn btn-success"><a class="text-light" href="/blog?page={{prev}}"> &laquo;Previous</a></button>
+        {% else %}
+         <button type="button" class="btn btn-success"><a class="text-light" href="#"> &laquo;Previous</a></button>
+
+
+
+        {% endif %}
+
+        {% if nxt %}
+        <button type="button" class="btn btn-success float-end"> <a class="text-light" href="/blog?page={{nxt}}"> Next&raquo;</a></button>
+        {% else %}
+         <button type="button" class="btn btn-success float-end"> <a class="text-light" href="#"> Next&raquo;</a></button>
+
+
+
+        {% endif %}
+
+
+
+
+
+    </div>
+
+</div>
+{% endblock body%}
